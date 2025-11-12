@@ -1,30 +1,317 @@
-subgraph Canais e Relacionamento
-        E1 --> C1(Canal: Venda Direta/B2B);
-        E1 --> R1(Relacionamento: Consultoria Regulatória, Relatório ESG e Gestão de Coleta);
-        
-        E2 --> C2(Canal: Rede de Ecopontos Implantados);
-        E2 --> R2(Relacionamento: Suporte Pedagógico STEM, Engajamento Contínuo e Treinamento In Loco);
-        
-        E3 --> C3(Canal: Parceria Estratégica Turn-Key);
-        E3 --> R3(Relacionamento: Logística Plug-and-Play, Co-Branding e Apoio na Conscientização);
-    end
-    
-    subgraph Base do Negócio
-        P(PARCEIROS PRINCIPAIS: Fabricantes/Importadores de Pilhas, Grandes Varejistas, Instituições de Fomento, Governos Locais);
-        F(FONTES DE RECEITA: Licenciamento, Patrocínio Exclusivo e Venda de Serviço de Coleta/Consultoria);
-    end
 
-    C1 --> R1;
-    C2 --> R2;
-    C3 --> R3;
+<!doctype html>
+<html lang="pt-BR">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fluxograma de Negócio</title>
+  <script src="/_sdk/element_sdk.js"></script>
+  <style>
+        body {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+        }
 
-    style R1 fill:#d3f6d3,stroke:#3c803c,stroke-width:2px;
-    style R2 fill:#d3f6d3,stroke:#3c803c,stroke-width:2px;
-    style R3 fill:#d3f6d3,stroke:#3c803c,stroke-width:2px;
-    style E1 fill:#f9d3f9,stroke:#9c3c9c,stroke-width:2px;
-    style E2 fill:#f9d3f9,stroke:#9c3c9c,stroke-width:2px;
-    style E3 fill:#f9d3f9,stroke:#9c3c9c,stroke-width:2px;
-    
-    P --> C;
-    F --> C;
-    C --> O(RESULTADO/IMPACTO: Cumprimento Legal, ODS 4, 9, 11, 12, 14, 15, 17);
+        .container {
+            width: 100%;
+            max-width: 1400px;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            text-align: center;
+            color: #2d3748;
+            margin-bottom: 40px;
+            font-size: 32px;
+            font-weight: 700;
+        }
+
+        .flowchart {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .section {
+            background: #f7fafc;
+            border-radius: 15px;
+            padding: 30px;
+            border: 2px solid #e2e8f0;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 700;
+            color: #4a5568;
+            margin-bottom: 25px;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .flow-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        .flow-group {
+            flex: 1;
+            min-width: 300px;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .box {
+            padding: 20px 25px;
+            border-radius: 12px;
+            font-size: 15px;
+            font-weight: 600;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            width: 100%;
+            max-width: 350px;
+            position: relative;
+        }
+
+        .box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .box-segmento {
+            background: #f9d3f9;
+            border: 3px solid #9c3c9c;
+            color: #6b2c6b;
+        }
+
+        .box-canal {
+            background: #dbeafe;
+            border: 3px solid #3b82f6;
+            color: #1e40af;
+        }
+
+        .box-relacionamento {
+            background: #d3f6d3;
+            border: 3px solid #3c803c;
+            color: #2d5f2d;
+        }
+
+        .box-base {
+            background: #fef3c7;
+            border: 3px solid #f59e0b;
+            color: #92400e;
+            max-width: 100%;
+        }
+
+        .box-resultado {
+            background: #fecaca;
+            border: 3px solid #dc2626;
+            color: #991b1b;
+            max-width: 100%;
+            font-size: 16px;
+            padding: 25px;
+        }
+
+        .arrow {
+            width: 0;
+            height: 0;
+            border-left: 15px solid transparent;
+            border-right: 15px solid transparent;
+            border-top: 20px solid #cbd5e0;
+            margin: 10px auto;
+        }
+
+        .connector-line {
+            width: 3px;
+            height: 30px;
+            background: #cbd5e0;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .flow-group {
+                min-width: 100%;
+            }
+
+            .box {
+                font-size: 14px;
+                padding: 15px 20px;
+            }
+        }
+    </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+  <script src="https://cdn.tailwindcss.com" type="text/javascript"></script>
+ </head>
+ <body>
+  <div class="container">
+   <h1 id="main-title">Modelo de Negócio - Canais e Relacionamento</h1>
+   <div class="flowchart"><!-- Seção 1: Canais e Relacionamento -->
+    <div class="section">
+     <div class="section-title">
+      Canais e Relacionamento
+     </div>
+     <div class="flow-row"><!-- Grupo 1 -->
+      <div class="flow-group">
+       <div class="box box-segmento">
+        E1: Fabricantes/Importadores de Pilhas
+       </div>
+       <div class="arrow"></div>
+       <div class="box box-canal">
+        Canal: Venda Direta/B2B
+       </div>
+       <div class="arrow"></div>
+       <div class="box box-relacionamento">
+        Relacionamento: Consultoria Regulatória, Relatório ESG e Gestão de Coleta
+       </div>
+      </div><!-- Grupo 2 -->
+      <div class="flow-group">
+       <div class="box box-segmento">
+        E2: Escolas e Instituições de Ensino
+       </div>
+       <div class="arrow"></div>
+       <div class="box box-canal">
+        Canal: Rede de Ecopontos Implantados
+       </div>
+       <div class="arrow"></div>
+       <div class="box box-relacionamento">
+        Relacionamento: Suporte Pedagógico STEM, Engajamento Contínuo e Treinamento In Loco
+       </div>
+      </div><!-- Grupo 3 -->
+      <div class="flow-group">
+       <div class="box box-segmento">
+        E3: Grandes Varejistas
+       </div>
+       <div class="arrow"></div>
+       <div class="box box-canal">
+        Canal: Parceria Estratégica Turn-Key
+       </div>
+       <div class="arrow"></div>
+       <div class="box box-relacionamento">
+        Relacionamento: Logística Plug-and-Play, Co-Branding e Apoio na Conscientização
+       </div>
+      </div>
+     </div>
+    </div><!-- Seção 2: Base do Negócio -->
+    <div class="section">
+     <div class="section-title">
+      Base do Negócio
+     </div>
+     <div class="flow-row">
+      <div class="box box-base"><strong>PARCEIROS PRINCIPAIS:</strong><br>
+        Fabricantes/Importadores de Pilhas • Grandes Varejistas • Instituições de Fomento • Governos Locais
+      </div>
+     </div>
+     <div class="connector-line"></div>
+     <div class="arrow"></div>
+     <div class="flow-row">
+      <div class="box box-base"><strong>FONTES DE RECEITA:</strong><br>
+        Licenciamento • Patrocínio Exclusivo • Venda de Serviço de Coleta/Consultoria
+      </div>
+     </div>
+    </div><!-- Seção 3: Resultado -->
+    <div class="section">
+     <div class="connector-line"></div>
+     <div class="arrow"></div>
+     <div class="flow-row">
+      <div class="box box-resultado"><strong>RESULTADO/IMPACTO:</strong><br>
+        Cumprimento Legal • ODS 4, 9, 11, 12, 14, 15, 17
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+  <script>
+        const defaultConfig = {
+            title: "Modelo de Negócio - Canais e Relacionamento",
+            background_color: "#667eea",
+            surface_color: "#ffffff",
+            text_color: "#2d3748",
+            primary_action_color: "#764ba2",
+            secondary_action_color: "#4a5568"
+        };
+
+        async function onConfigChange(config) {
+            const title = config.title || defaultConfig.title;
+            const backgroundColor = config.background_color || defaultConfig.background_color;
+            const surfaceColor = config.surface_color || defaultConfig.surface_color;
+            const textColor = config.text_color || defaultConfig.text_color;
+            
+            document.getElementById('main-title').textContent = title;
+            document.body.style.background = `linear-gradient(135deg, ${backgroundColor} 0%, ${config.primary_action_color || defaultConfig.primary_action_color} 100%)`;
+            document.querySelector('.container').style.backgroundColor = surfaceColor;
+            document.querySelector('h1').style.color = textColor;
+        }
+
+        if (window.elementSdk) {
+            window.elementSdk.init({
+                defaultConfig,
+                onConfigChange,
+                mapToCapabilities: (config) => ({
+                    recolorables: [
+                        {
+                            get: () => config.background_color || defaultConfig.background_color,
+                            set: (value) => {
+                                config.background_color = value;
+                                window.elementSdk.setConfig({ background_color: value });
+                            }
+                        },
+                        {
+                            get: () => config.surface_color || defaultConfig.surface_color,
+                            set: (value) => {
+                                config.surface_color = value;
+                                window.elementSdk.setConfig({ surface_color: value });
+                            }
+                        },
+                        {
+                            get: () => config.text_color || defaultConfig.text_color,
+                            set: (value) => {
+                                config.text_color = value;
+                                window.elementSdk.setConfig({ text_color: value });
+                            }
+                        },
+                        {
+                            get: () => config.primary_action_color || defaultConfig.primary_action_color,
+                            set: (value) => {
+                                config.primary_action_color = value;
+                                window.elementSdk.setConfig({ primary_action_color: value });
+                            }
+                        }
+                    ],
+                    borderables: [],
+                    fontEditable: undefined,
+                    fontSizeable: undefined
+                }),
+                mapToEditPanelValues: (config) => new Map([
+                    ["title", config.title || defaultConfig.title]
+                ])
+            });
+        }
+    </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99d4fe5c31520357',t:'MTc2MjkzOTY0Ny4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
